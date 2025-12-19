@@ -7,27 +7,69 @@
     <div class="col-md-6">
         <div class="card">
             <div class="card-header">
-                <h4>Реєстрація</h4>
+                <h2 class="text-center">Реєстрація</h2>
             </div>
             <div class="card-body">
-                <form method="POST" action="{{ url_for('register') }}">
+                <form method="POST" action="{{ url_for('register') }}" class="needs-validation" novalidate>
                     <div class="mb-3">
                         <label for="username" class="form-label">Ім'я користувача</label>
-                        <input type="text" class="form-control" id="username" name="username" required>
+                        <input type="text" class="form-control" id="username" name="username" required minlength="3" maxlength="80">
+                        <div class="invalid-feedback">Будь ласка, введіть ім'я користувача (від 3 до 80 символів)</div>
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Електронна пошта</label>
                         <input type="email" class="form-control" id="email" name="email" required>
+                        <div class="invalid-feedback">Будь ласка, введіть коректну електронну адресу</div>
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Пароль</label>
-                        <input type="password" class="form-control" id="password" name="password" required>
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="password" name="password" required minlength="6">
+                            <button class="btn btn-outline-secondary toggle-password" type="button">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <div class="invalid-feedback">Пароль повинен містити принаймні 6 символів</div>
+                        </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Зареєструватися</button>
+                    <div class="mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="terms" required>
+                            <label class="form-check-label" for="terms">
+                                Я погоджуюся з <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">умовами використання</a>
+                            </label>
+                            <div class="invalid-feedback">Ви повинні погодитися з умовами використання</div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Зареєструватися</button>
                 </form>
-                <div class="mt-3">
-                    Вже маєте акаунт? <a href="{{ url_for('login') }}">Увійти</a>
+                <div class="mt-3 text-center">
+                    <p>Вже маєте акаунт? <a href="{{ url_for('login') }}">Увійти</a></p>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Модальне вікно з умовами використання -->
+<div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="termsModalLabel">Умови використання</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h6>1. Загальні умови</h6>
+                <p>Реєструючись на цьому сайті, ви погоджуєтеся з нашими умовами використання.</p>
+                
+                <h6>2. Конфіденційність</h6>
+                <p>Ми зберігаємо ваші особисті дані відповідно до нашої політики конфіденційності.</p>
+                
+                <h6>3. Вміст</h6>
+                <p>Ви несете відповідальність за контент, який публікуєте на нашому сайті.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрити</button>
             </div>
         </div>
     </div>
