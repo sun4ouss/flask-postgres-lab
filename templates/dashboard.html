@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Особистий кабінет{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h4>Вітаємо, {{ user.username }}!</h4>
+            </div>
+            <div class="card-body">
+                <h5>Ваші дані:</h5>
+                <ul class="list-group mb-4">
+                    <li class="list-group-item"><strong>Ім'я користувача:</strong> {{ user.username }}</li>
+                    <li class="list-group-item"><strong>Електронна пошта:</strong> {{ user.email }}</li>
+                    <li class="list-group-item"><strong>Дата реєстрації:</strong> {{ user.created_at.strftime('%d.%m.%Y %H:%M') }}</li>
+                </ul>
+                <a href="{{ url_for('logout') }}" class="btn btn-danger">Вийти</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

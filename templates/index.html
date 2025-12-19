@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Головна{% endblock %}
+
+{% block content %}
+<div class="text-center py-5">
+    <h1 class="display-4">Лабораторна робота</h1>
+    <p class="lead">Веб-додаток з реєстрацією та авторизацією</p>
+    {% if current_user.is_authenticated %}
+        <a href="{{ url_for('dashboard') }}" class="btn btn-primary btn-lg">Особистий кабінет</a>
+    {% else %}
+        <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg me-2">Реєстрація</a>
+        <a href="{{ url_for('login') }}" class="btn btn-outline-primary btn-lg">Увійти</a>
+    {% endif %}
+</div>
+{% endblock %}
